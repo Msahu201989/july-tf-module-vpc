@@ -5,8 +5,8 @@ resource "aws_vpc" "main" {
 }
 
 module "additional_cidr_block" {
-  for_each = var.vpc
-  source = "./additional_cidr_block"
+  for_each              = var.vpc
+  source                = "./additional_cidr_block"
   additional_cidr_block = each.value.additional_cidr_block
-  vpc_id = var.vpc_id
+  vpc_id                = aws_vpc.main.id
 }
