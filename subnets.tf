@@ -19,3 +19,4 @@ module "public_subnets" {
   subnet_availability_zones = var.subnet_availability_zones
   gateway_id                = aws_internet_gateway.igw.id
 }
+
