@@ -1,4 +1,5 @@
 resource "aws_internet_gateway" "igw" {
+  count = length(local.vpc_ids)
   vpc_id = aws_vpc.main.id
 
   tags = {
@@ -11,6 +12,7 @@ resource "aws_eip" "ngw" {
 }
 
 resource "aws_nat_gateway" "ngw" {
+  count = length(local.vpc_ids)
   allocation_id = aws_eip.ngw.id
   subnet_id     = lookup(lookup(module.public_subnets, "public", null), "subnets", null)[0].id
   tags = {
